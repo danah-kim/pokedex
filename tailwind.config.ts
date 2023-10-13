@@ -17,6 +17,11 @@ const config: Config = {
           '100%': { transform: 'rotate(360deg)' },
         },
       },
+      backgroundImage: {
+        coast: "url('/assets/images/coast.jpg')",
+        forest: "url('/assets/images/forest.jpg')",
+        glacier: "url('/assets/images/glacier.jpg')",
+      },
     },
   },
   plugins: [],
