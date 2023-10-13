@@ -37,6 +37,7 @@ const View: React.FC<ViewProps> = ({
         {typeof orbitOptions !== 'undefined' ? (
           <OrbitControls
             enablePan={false}
+            enableZoom={false}
             minPolarAngle={Math.PI / 2.2}
             maxPolarAngle={Math.PI / 2.2}
             {...(typeof orbitOptions === 'boolean' ? null : orbitOptions)}

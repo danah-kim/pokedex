@@ -1,12 +1,14 @@
 'use client';
 
-import { useGLTF } from '@react-three/drei';
+import { Html, useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import * as THREE from 'three';
 import { type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import useThemeStore from '@/stores/themeStore';
+
+import Hero from '../Hero';
 
 type GLTFDevice = GLTF & {
   nodes: {
@@ -91,7 +93,13 @@ const Device = (props: JSX.IntrinsicElements['group']) => {
           receiveShadow
           geometry={nodes.polySurface85_Udim0005_0.geometry}
           material={materials.Udim0005}
-        />
+        >
+          <Html className="content" position={[-4.67, 1.88, -0.44]} transform occlude>
+            <div className="wrapper" onPointerDown={(e) => e.stopPropagation()}>
+              <Hero />
+            </div>
+          </Html>
+        </mesh>
       </group>
       <group>
         <mesh
