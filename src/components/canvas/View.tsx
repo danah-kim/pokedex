@@ -3,6 +3,7 @@
 import {
   ContactShadows,
   Environment,
+  type EnvironmentProps,
   OrbitControls,
   type OrbitControlsProps,
 } from '@react-three/drei';
@@ -12,12 +13,14 @@ import { Suspense } from 'react';
 interface ViewProps extends CanvasProps {
   lightColor?: string;
   orbitOptions?: OrbitControlsProps | boolean;
+  envOptions?: EnvironmentProps;
 }
 
 const View: React.FC<ViewProps> = ({
   children,
   lightColor = '#ffffff',
   orbitOptions,
+  envOptions,
   ...props
 }) => {
   return (
@@ -26,7 +29,7 @@ const View: React.FC<ViewProps> = ({
         <group rotation={[0, Math.PI, 0]} position={[0, 1, 0]}>
           {children}
         </group>
-        <Environment preset="city" />
+        <Environment preset="city" {...envOptions} />
       </Suspense>
       <Suspense fallback={null}>
         <pointLight color={lightColor} position={[-5, 4, -15]} intensity={1.5} />

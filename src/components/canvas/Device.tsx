@@ -98,10 +98,16 @@ const Device = (props: JSX.IntrinsicElements['group']) => {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
           onClick={() => changeSpaceTheme()}
-          position={[-3.8, 3.5, 0]}
+          position={[-3.75, 3.55, 0.1]}
         >
           <sphereGeometry args={[0.4, 32, 32]} />
-          <meshStandardMaterial />
+          <meshPhysicalMaterial
+            color="#459bf1"
+            clearcoat={1}
+            clearcoatRoughness={0}
+            roughness={0}
+            metalness={0.5}
+          />
         </mesh>
       </group>
     </group>
