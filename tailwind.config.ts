@@ -71,7 +71,7 @@ const config: Config = {
             main: '#F4D23C',
             bg: '#FBF8E9',
           },
-          phychic: {
+          psychic: {
             main: '#FA7179',
             bg: '#FCEEEF',
           },
@@ -107,7 +107,7 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(pokemon)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|phychic|ice|dragon|dark|fairy|unknown|shadow)-(main|bg)/,
+        /(bg|text|border)-(pokemon)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|unknown|shadow)-(main|bg)/,
     },
   ],
 };
