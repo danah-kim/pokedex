@@ -17,11 +17,6 @@ const config: Config = {
           '100%': { transform: 'rotate(360deg)' },
         },
       },
-      backgroundImage: {
-        coast: "url('/assets/images/coast.jpg')",
-        forest: "url('/assets/images/forest.jpg')",
-        glacier: "url('/assets/images/glacier.jpg')",
-      },
       colors: {
         pokemon: {
           normal: {
@@ -37,7 +32,7 @@ const config: Config = {
             bg: '#F1F4FA',
           },
           poison: {
-            main: 'B567CE',
+            main: '#B567CE',
             bg: '#F5EDF8',
           },
           ground: {
@@ -109,5 +104,11 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern:
+        /(bg|text|border)-(pokemon)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|phychic|ice|dragon|dark|fairy|unknown|shadow)-(main|bg)/,
+    },
+  ],
 };
 export default config;

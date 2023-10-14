@@ -9,7 +9,7 @@ import { type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import useThemeStore from '@/stores/themeStore';
 
-import Hero from '../Hero';
+import PokemonList from '../PokemonList';
 
 type GLTFDevice = GLTF & {
   nodes: {
@@ -97,7 +97,7 @@ const Device = (props: JSX.IntrinsicElements['group']) => {
         >
           <Html className="content" position={[-4.67, 1.88, -0.44]} transform occlude>
             <ReactQueryProvider>
-              <Hero />
+              <PokemonList />
             </ReactQueryProvider>
           </Html>
         </mesh>
