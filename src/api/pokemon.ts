@@ -1,5 +1,7 @@
-import type { Pokemon, PokemonSpecies } from '@/typings/pokemon';
+import type { NamedAPIResource } from '@/typings/common';
+import type { Pokemon, PokemonSpecies, PokemonType } from '@/typings/pokemon';
 import type { EvolutionChain } from '@/typings/pokemon-evolution';
+import type { Type } from '@/typings/pokemon-type';
 import { http } from '@/utils/http';
 
 export interface PokemonsRequest {
@@ -11,7 +13,7 @@ export interface PokemonsResponse {
   count: number;
   next: string | null;
   previous: string | null;
-  results: { name: string; url: string }[];
+  results: NamedAPIResource[];
 }
 
 export const getPokemons = async (params: PokemonsRequest) => {
@@ -20,6 +22,14 @@ export const getPokemons = async (params: PokemonsRequest) => {
 
 export const getPokemonByName = async (name: string) => {
   return http.get<string, Pokemon>(`/pokemon/${name}`);
+};
+
+export const getPokemonTypes = async () => {
+  return http.get<undefined, PokemonsResponse>('/type');
+};
+
+export const getPokemonTypeByID = async (id: number) => {
+  return http.get<number, Type>(`/type/${id}`);
 };
 
 export const getPokemonSpeciesByID = async (id: number) => {

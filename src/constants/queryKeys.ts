@@ -4,6 +4,8 @@ const pokemon = {
   all: ['pokemon'] as const,
   list: (params: PokemonsRequest) => [...pokemon.all, 'list', params] as const,
   item: (name: string) => [...pokemon.all, 'item', name] as const,
+  types: () => [...pokemon.all, 'types'] as const,
+  type: (id: number) => [...pokemon.all, 'type', id] as const,
   species: (id: number) => [...pokemon.all, 'species', id] as const,
   evolutionChain: (id: number) => [...pokemon.all, 'evolution-chain', id] as const,
 };
