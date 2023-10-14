@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import * as THREE from 'three';
 import { type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import useThemeStore from '@/stores/themeStore';
 
 import Hero from '../Hero';
@@ -95,9 +96,9 @@ const Device = (props: JSX.IntrinsicElements['group']) => {
           material={materials.Udim0005}
         >
           <Html className="content" position={[-4.67, 1.88, -0.44]} transform occlude>
-            <div className="wrapper" onPointerDown={(e) => e.stopPropagation()}>
+            <ReactQueryProvider>
               <Hero />
-            </div>
+            </ReactQueryProvider>
           </Html>
         </mesh>
       </group>

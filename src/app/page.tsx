@@ -12,7 +12,7 @@ const View = dynamic(() => import('@/components/canvas/View'), {
     <Image
       src="/assets/images/pokeball.png"
       alt="Pokeball"
-      className="amber-400 animate-rotate-poke-ball"
+      className="animate-rotate-poke-ball"
       width={240}
       height={240}
       priority

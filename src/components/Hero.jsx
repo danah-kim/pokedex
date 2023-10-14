@@ -1,4 +1,25 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
+
+import { getPokemonByName } from '@/api/pokemon';
+import queryKeys from '@/constants/queryKeys';
+import usePokemonStore from '@/stores/pokemonStore';
+
 const Hero = () => {
+  const pokemonParams = usePokemonStore();
+  const { isLoading, data } = useQuery({
+    queryKey: queryKeys.pokemon.list(pokemonParams),
+    queryFn: () => getPokemonByName(pokemonParams),
+  });
+
+  if (isLoading) {
+    return (
+      <Image src={'/assets/images/logo.svg'} alt="Pokémon Logo" width={200} height={200} priority />
+    );
+  }
+
   return (
     <section className="relative bg-gray-50 max-w-[256px] max-h-[173px] rounded-xl overflow-scroll select-none">
       <div className="mx-auto pt-7 pb-20 text-center">
