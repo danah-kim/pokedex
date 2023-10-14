@@ -1,6 +1,6 @@
 import capitalize from 'lodash-es/capitalize';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 
 import type { Type } from '@/typings/pokemon-type';
 
@@ -24,7 +24,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
   );
 
   return (
-    <ul className={`relative flex flex-row h-[100px]`}>
+    <div className="relative flex flex-row h-[100px]">
       <div className="flex-1 z-10 pl-4 py-2.5 overflow-hidden">
         <h1
           className={`text-xl text-pokemon-${firstType}-main font-semibold overflow-hidden whitespace-nowrap text-ellipsis`}
@@ -68,8 +68,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
       <div
         className={`absolute top-0 left-0 w-full h-full rounded-2xl shadow-sm bg-pokemon-${firstType}-main opacity-30`}
       />
-    </ul>
+    </div>
   );
 };
 
-export default PokemonCard;
+export default memo(PokemonCard);

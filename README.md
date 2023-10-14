@@ -11,6 +11,8 @@ use the advancde search to find Pokémon by type, weakness, ablity and more!
 - React Toastify
 - Axios
 - Loadash
+- React Window
+- React Window Infinite Loader
 
 ## Reference
 
