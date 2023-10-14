@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 
-import { getPokemonByName } from '@/api/pokemon';
+import { getPokemons } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
 import usePokemonStore from '@/stores/pokemonStore';
 
@@ -11,7 +11,7 @@ const Hero = () => {
   const pokemonParams = usePokemonStore();
   const { isLoading, data } = useQuery({
     queryKey: queryKeys.pokemon.list(pokemonParams),
-    queryFn: () => getPokemonByName(pokemonParams),
+    queryFn: () => getPokemons(pokemonParams),
   });
 
   if (isLoading) {

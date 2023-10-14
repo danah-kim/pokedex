@@ -7,14 +7,25 @@ export interface PokemonsRequest {
   limit: number;
 }
 
-export const getPokemonByName = async (params: PokemonsRequest) => {
-  return http.get<Pokemon[]>('/pokemon', { params });
+export interface PokemonsResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: { name: string; url: string }[];
+}
+
+export const getPokemons = async (params: PokemonsRequest) => {
+  return http.get<PokemonsRequest, PokemonsResponse>('/pokemon', { params });
+};
+
+export const getPokemonByName = async (name: string) => {
+  return http.get<string, Pokemon>(`/pokemon/${name}`);
 };
 
 export const getPokemonSpeciesByID = async (id: number) => {
-  return http.get<PokemonSpecies>(`/pokemon-species/${id}`);
+  return http.get<number, PokemonSpecies>(`/pokemon-species/${id}`);
 };
 
 export const getEvolutionChainByID = async (id: number) => {
-  return http.get<EvolutionChain>(`/evolution-chain/${id}`);
+  return http.get<number, EvolutionChain>(`/evolution-chain/${id}`);
 };
