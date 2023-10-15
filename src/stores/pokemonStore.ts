@@ -5,8 +5,8 @@ export interface PokemonState {
     offset: number;
     limit: number;
   };
-  pokemonName: string;
-  selectPokemon: (pokemonName: string) => void;
+  pokemonId: number;
+  selectPokemon: (pokemonId: number) => void;
 }
 
 const usePokemonStore = create<PokemonState>((set) => ({
@@ -14,8 +14,8 @@ const usePokemonStore = create<PokemonState>((set) => ({
     offset: 0,
     limit: 20,
   },
-  pokemonName: '',
-  selectPokemon: (pokemonName) => set(() => ({ pokemonName })),
+  pokemonId: 0,
+  selectPokemon: (pokemonId) => set(() => ({ pokemonId })),
 }));
 
 export default usePokemonStore;

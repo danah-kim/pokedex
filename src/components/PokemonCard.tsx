@@ -29,7 +29,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
   return (
     <div
       className="relative flex flex-row h-[100px] cursor-pointer group"
-      onClick={() => selectPokemon(name)}
+      onClick={() => selectPokemon(id)}
     >
       <div className="flex-1 z-10 pl-4 py-2 overflow-hidden">
         <h1

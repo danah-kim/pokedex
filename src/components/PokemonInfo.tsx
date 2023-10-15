@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { memo, useState } from 'react';
 
-import { getPokemonByName, getPokemonSpeciesByID } from '@/api/pokemon';
+import { getPokemonByID, getPokemonSpeciesByID } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
 import usePokemonStore from '@/stores/pokemonStore';
 import { pokemonHtml } from '@/utils/tunner';
@@ -13,12 +13,11 @@ import PokemonStats from './pokemon/PokemonStats';
 const MENU = ['About', 'Stats', 'Evolutions'];
 
 const PokemonInfo = () => {
-  const { pokemonName } = usePokemonStore();
+  const { pokemonId } = usePokemonStore();
 
   const {
     isLoading: isLaodingPokemon,
     data: {
-      id = 0,
       height = 0,
       weight = 0,
       types: [{ type: { name: firstType = '' } = {} } = {}] = [],
@@ -26,17 +25,17 @@ const PokemonInfo = () => {
       stats = [],
     } = {},
   } = useQuery({
-    queryKey: queryKeys.pokemon.item(pokemonName),
-    queryFn: () => getPokemonByName(pokemonName),
-    enabled: pokemonName.length > 0,
+    queryKey: queryKeys.pokemon.item(pokemonId),
+    queryFn: () => getPokemonByID(pokemonId),
+    enabled: pokemonId > 0,
   });
   const {
     isLoading: isLoadingSpecies,
     data: { genera = [], evolution_chain: { url = '' } = {} } = {},
   } = useQuery({
-    queryKey: queryKeys.pokemon.species(id),
-    queryFn: () => getPokemonSpeciesByID(id),
-    enabled: id > 0,
+    queryKey: queryKeys.pokemon.species(pokemonId),
+    queryFn: () => getPokemonSpeciesByID(pokemonId),
+    enabled: pokemonId > 0,
   });
   const category =
     genera.find(({ language }) => language.name === 'en')?.genus.replace(' Pokémon', '') || '';
@@ -44,7 +43,7 @@ const PokemonInfo = () => {
   const [tab, setTab] = useState(0);
   const isLaoding = isLaodingPokemon || isLoadingSpecies;
 
-  if (pokemonName.length === 0) {
+  if (pokemonId === 0) {
     return (
       <pokemonHtml.In>
         <section
@@ -83,7 +82,7 @@ const PokemonInfo = () => {
           ))}
         </div>
         {isLaoding && (
-          <div className="flex flex-col gap-1.5 pt-2.5 px-3 pb-3.5">
+          <div className="flex flex-col gap-1.5 pt-2.5 px-3 pb-3.5 z-10">
             {Array.from({ length: 4 }, (_, index) => (
               <div key={`skeleton-${index}`} className={`w-full h-5 bg-zinc-100 rounded-md`} />
             ))}

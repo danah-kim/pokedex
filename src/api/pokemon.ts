@@ -20,8 +20,8 @@ export const getPokemons = async (params: PokemonsRequest) => {
   return http.get<PokemonsRequest, PokemonsResponse>('/pokemon', { params });
 };
 
-export const getPokemonByName = async (name: string) => {
-  return http.get<string, Pokemon>(`/pokemon/${name}`);
+export const getPokemonByID = async (id: number) => {
+  return http.get<string, Pokemon>(`/pokemon/${id}`);
 };
 
 export const getPokemonTypes = async () => {
