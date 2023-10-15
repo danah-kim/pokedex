@@ -1,10 +1,9 @@
 import { create } from 'zustand';
 
 import { SPACE_IMAGE } from '@/constants/theme';
+import { getRandomNum } from '@/utils/common';
 
 export type SpaceTheme = (typeof SPACE_IMAGE)[keyof typeof SPACE_IMAGE];
-
-const getRandomIndex = (n: number) => Math.floor(Math.random() * n);
 
 export interface ThemeState {
   spaceTheme: SpaceTheme;
@@ -19,7 +18,7 @@ const useThemeStore = create<ThemeState>((set) => ({
   changeSpaceTheme: (newTheme) =>
     set((prev) => {
       while (typeof newTheme === 'undefined' || newTheme === prev.spaceTheme) {
-        newTheme = Object.values(SPACE_IMAGE)[getRandomIndex(3)];
+        newTheme = Object.values(SPACE_IMAGE)[getRandomNum(3)];
       }
 
       return {

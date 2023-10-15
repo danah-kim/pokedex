@@ -2,6 +2,7 @@ import capitalize from 'lodash-es/capitalize';
 import Image from 'next/image';
 import { memo, useMemo } from 'react';
 
+import usePokemonStore from '@/stores/pokemonStore';
 import type { Type } from '@/typings/pokemon-type';
 
 import PokemonImage from './PokemonImage';
@@ -13,6 +14,8 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
+  const { selectPokemon } = usePokemonStore();
+
   const [{ name: firstType }, { name: secondType = '' } = {}] = useMemo(
     () =>
       types.sort(
@@ -24,40 +27,46 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
   );
 
   return (
-    <div className="relative flex flex-row h-[100px]">
-      <div className="flex-1 z-10 pl-4 py-2.5 overflow-hidden">
+    <div
+      className="relative flex flex-row h-[100px] cursor-pointer group"
+      onClick={() => selectPokemon(name)}
+    >
+      <div className="flex-1 z-10 pl-4 py-2 overflow-hidden">
         <h1
           className={`text-xl text-pokemon-${firstType}-main font-semibold overflow-hidden whitespace-nowrap text-ellipsis`}
         >
           {capitalize(name)}
         </h1>
-        <div className="flex gap-1.5 flex-wrap mt-0.5">
-          <div className="flex gap-0.5 items-center">
-            <div className={`bg-pokemon-${firstType}-main rounded-full p-0.5`}>
-              <Image
-                src={`/assets/icons/type/${firstType}.svg`}
-                alt=""
-                width={8}
-                height={8}
-                draggable={false}
-              />
-            </div>
-            <p className="text-xs text-white">{capitalize(firstType)}</p>
-          </div>
-          {secondType.length > 0 && (
+        <div className="flex flex-col justify-between">
+          <div className="flex-1 flex gap-1.5 flex-wrap">
             <div className="flex gap-0.5 items-center">
-              <div className={`bg-pokemon-${secondType}-main rounded-full p-0.5`}>
+              <div className={`bg-pokemon-${firstType}-main rounded-full p-0.5`}>
                 <Image
-                  src={`/assets/icons/type/${secondType}.svg`}
+                  src={`/assets/icons/type/${firstType}.svg`}
                   alt=""
                   width={8}
                   height={8}
                   draggable={false}
                 />
               </div>
-              <p className="text-xs text-white">{capitalize(secondType)}</p>
+              <p className="text-xs text-white">{capitalize(firstType)}</p>
             </div>
-          )}
+            {secondType.length > 0 && (
+              <div className="flex gap-0.5 items-center">
+                <div className={`bg-pokemon-${secondType}-main rounded-full p-0.5`}>
+                  <Image
+                    src={`/assets/icons/type/${secondType}.svg`}
+                    alt=""
+                    width={8}
+                    height={8}
+                    draggable={false}
+                  />
+                </div>
+                <p className="text-xs text-white">{capitalize(secondType)}</p>
+              </div>
+            )}
+          </div>
+          <p className="mt-4 text-white text-sm">{id.toString().padStart(4, '0')}</p>
         </div>
       </div>
       <div className="relative overflow-hidden z-10">
@@ -81,7 +90,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
         />
       </div>
       <div
-        className={`absolute top-0 left-0 w-full h-full rounded-2xl shadow-sm bg-pokemon-${firstType}-main opacity-30`}
+        className={`absolute top-0 left-0 w-full h-full rounded-2xl shadow-sm bg-pokemon-${firstType}-main opacity-30 transition-opacity group-hover:opacity-40`}
       />
     </div>
   );

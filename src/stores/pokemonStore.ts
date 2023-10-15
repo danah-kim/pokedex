@@ -1,13 +1,21 @@
 import { create } from 'zustand';
 
 export interface PokemonState {
-  offset: number;
-  limit: number;
+  pokemonsParams: {
+    offset: number;
+    limit: number;
+  };
+  pokemonName: string;
+  selectPokemon: (pokemonName: string) => void;
 }
 
 const usePokemonStore = create<PokemonState>((set) => ({
-  offset: 0,
-  limit: 20,
+  pokemonsParams: {
+    offset: 0,
+    limit: 20,
+  },
+  pokemonName: '',
+  selectPokemon: (pokemonName) => set(() => ({ pokemonName })),
 }));
 
 export default usePokemonStore;

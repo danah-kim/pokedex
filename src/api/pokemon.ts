@@ -36,6 +36,6 @@ export const getPokemonSpeciesByID = async (id: number) => {
   return http.get<number, PokemonSpecies>(`/pokemon-species/${id}`);
 };
 
-export const getEvolutionChainByID = async (id: number) => {
+export const getPokemonEvolutionChainByID = async (id: number) => {
   return http.get<number, EvolutionChain>(`/evolution-chain/${id}`);
 };

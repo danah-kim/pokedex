@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
+import PokemonInfo from '@/components/PokemonInfo';
 import PokemonList from '@/components/Pokemons';
 import useThemeStore from '@/stores/themeStore';
 
@@ -42,6 +43,7 @@ export default function Pokemons() {
         <Device />
       </View>
       <PokemonList />
+      <PokemonInfo />
     </main>
   );
 }

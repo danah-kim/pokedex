@@ -2,7 +2,7 @@
 import { useInfiniteQuery, useQueries, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import qs from 'qs';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
 
@@ -14,10 +14,10 @@ import { pokemonsHtml } from '@/utils/tunner';
 
 import PokemonCard from './PokemonCard';
 
-const PADDING_SIZE = 20;
+const PADDING_SIZE = 16;
 
 const Pokemons = () => {
-  const pokemonParams = usePokemonStore();
+  const { pokemonsParams } = usePokemonStore();
 
   const { isLoading: isLoadingTypes, data: { count: typeCount = 0, results = [] } = {} } = useQuery(
     {
@@ -49,9 +49,9 @@ const Pokemons = () => {
     isFetchingNextPage,
     fetchNextPage,
   } = useInfiniteQuery({
-    queryKey: queryKeys.pokemon.list(pokemonParams),
-    queryFn: ({ pageParam = pokemonParams.offset }) =>
-      getPokemons({ ...pokemonParams, offset: pageParam }),
+    queryKey: queryKeys.pokemon.list(pokemonsParams),
+    queryFn: ({ pageParam = pokemonsParams.offset }) =>
+      getPokemons({ ...pokemonsParams, offset: pageParam }),
     getNextPageParam: ({ next }) => Number(qs.parse(next?.split('?')[1] || '').offset || 0),
     refetchOnWindowFocus: false,
   });
@@ -100,7 +100,7 @@ const Pokemons = () => {
               className="List"
               width={256}
               height={173}
-              itemSize={120}
+              itemSize={112}
               itemData={pokemons}
               itemCount={itemCount}
             >
@@ -130,10 +130,10 @@ const Pokemons = () => {
                   <div
                     style={{
                       ...style,
-                      top: +(style?.top || 0) + PADDING_SIZE,
-                      left: +(style?.left || 0) + PADDING_SIZE - 4,
-                      right: +(style?.right || 0) - PADDING_SIZE + 4,
-                      width: `calc(100% - ${(PADDING_SIZE - 4) * 2}px)`,
+                      top: +(style?.top || 0) + PADDING_SIZE - 4,
+                      left: +(style?.left || 0) + PADDING_SIZE,
+                      right: +(style?.right || 0) - PADDING_SIZE,
+                      width: `calc(100% - ${PADDING_SIZE * 2}px)`,
                     }}
                   >
                     <PokemonCard
@@ -155,4 +155,4 @@ const Pokemons = () => {
   );
 };
 
-export default Pokemons;
+export default memo(Pokemons);
