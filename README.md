@@ -14,7 +14,6 @@ use the advancde search to find Pokémon by type, weakness, ablity and more!
 - React Window
 - React Window Infinite Loader
 - Tunner Rat
--
 
 ## Reference
 

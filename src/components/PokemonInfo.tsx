@@ -1,25 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { memo, useState } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 
-import { getPokemonByID, getPokemonSpeciesByID } from '@/api/pokemon';
+import { getPokemonByID, getPokemonEvolutionChainByID, getPokemonSpeciesByID } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
 import usePokemonStore from '@/stores/pokemonStore';
 import { pokemonHtml } from '@/utils/tunner';
 
 import PokemonAbout from './pokemon/PokemonAbout';
+import PokemonEvolutions from './pokemon/PokemonEvolutions';
 import PokemonStats from './pokemon/PokemonStats';
 
 const MENU = ['About', 'Stats', 'Evolutions'];
 
 const PokemonInfo = () => {
-  const { pokemonId } = usePokemonStore();
+  const { pokemonId, selectPokemon } = usePokemonStore();
 
   const {
     isLoading: isLaodingPokemon,
     data: {
       height = 0,
       weight = 0,
+      name = '',
       types: [{ type: { name: firstType = '' } = {} } = {}] = [],
       abilities: [{ ability: { name: firstAbility = '' } = {} } = {}] = [],
       stats = [],
@@ -37,11 +39,27 @@ const PokemonInfo = () => {
     queryFn: () => getPokemonSpeciesByID(pokemonId),
     enabled: pokemonId > 0,
   });
+  const evolutionChainId = +url.substring(url.slice(0, -1).lastIndexOf('/') + 1).slice(0, -1);
+  const { data: { chain: evolutionChain } = {} } = useQuery({
+    queryKey: queryKeys.pokemon.evolutionChain(evolutionChainId),
+    queryFn: () => getPokemonEvolutionChainByID(evolutionChainId),
+    enabled: evolutionChainId > 0,
+  });
   const category =
     genera.find(({ language }) => language.name === 'en')?.genus.replace(' Pokémon', '') || '';
 
   const [tab, setTab] = useState(0);
+  const pokemonInfoRef = useRef<HTMLElement | null>(null);
   const isLaoding = isLaodingPokemon || isLoadingSpecies;
+
+  const handleClickPokemon = useCallback(
+    (id: number) => {
+      selectPokemon(id);
+      setTab(0);
+      setTimeout(() => pokemonInfoRef.current?.scrollTo({ top: 0 }));
+    },
+    [selectPokemon],
+  );
 
   if (pokemonId === 0) {
     return (
@@ -59,6 +77,7 @@ const PokemonInfo = () => {
   return (
     <pokemonHtml.In>
       <section
+        ref={pokemonInfoRef}
         className="relative bg-gray-50 w-[222px] h-[96px] rounded-md overflow-scroll select-none"
         onPointerDown={(e) => e.stopPropagation()}
       >
@@ -97,6 +116,13 @@ const PokemonInfo = () => {
           />
         )}
         {!isLaoding && tab === 1 && <PokemonStats stats={stats} />}
+        {!isLaoding && tab === 2 && (
+          <PokemonEvolutions
+            name={name}
+            evolutionChain={evolutionChain}
+            onClickPokemon={handleClickPokemon}
+          />
+        )}
         <div className="absolute top-9 w-full overflow-hidden">
           <Image
             className="ml-auto translate-x-4"

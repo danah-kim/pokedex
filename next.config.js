@@ -8,6 +8,12 @@ const nextConfig = {
         port: '',
         pathname: '/PokeAPI/sprites/master/sprites/pokemon/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.pokemon.com',
+        port: '',
+        pathname: '/assets/cms2/img/pokedex/detail/**',
+      },
     ],
   },
 };
