@@ -10,6 +10,7 @@ import { getPokemons, getPokemonTypeByID, getPokemonTypes } from '@/api/pokemon'
 import queryKeys from '@/constants/queryKeys';
 import usePokemonStore from '@/stores/pokemonStore';
 import type { Type } from '@/typings/pokemon-type';
+import { getPokemonIdFromUrl } from '@/utils/common';
 import { pokemonsHtml } from '@/utils/tunner';
 
 import PokemonCard from './PokemonCard';
@@ -31,7 +32,7 @@ const Pokemons = () => {
     queries:
       !isLoadingTypes && typeCount !== 0
         ? results.map(({ url }) => {
-            const id = +url.substring(url.slice(0, -1).lastIndexOf('/') + 1).slice(0, -1);
+            const id = getPokemonIdFromUrl(url);
 
             return {
               queryKey: queryKeys.pokemon.type(id),
@@ -122,10 +123,6 @@ const Pokemons = () => {
                     </div>
                   );
 
-                const pokeminId = +url
-                  .substring(url.slice(0, -1).lastIndexOf('/') + 1)
-                  .slice(0, -1);
-
                 return (
                   <div
                     style={{
@@ -138,7 +135,7 @@ const Pokemons = () => {
                   >
                     <PokemonCard
                       key={`pokemon-card-${name}`}
-                      id={pokeminId}
+                      id={getPokemonIdFromUrl(url)}
                       name={name}
                       types={(types as Type[]).filter(({ pokemon }) =>
                         pokemon.some(({ pokemon }) => pokemon.name === name),

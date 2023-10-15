@@ -5,6 +5,7 @@ import { memo, useCallback, useRef, useState } from 'react';
 import { getPokemonByID, getPokemonEvolutionChainByID, getPokemonSpeciesByID } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
 import usePokemonStore from '@/stores/pokemonStore';
+import { getPokemonIdFromUrl } from '@/utils/common';
 import { pokemonHtml } from '@/utils/tunner';
 
 import PokemonAbout from './pokemon/PokemonAbout';
@@ -39,7 +40,7 @@ const PokemonInfo = () => {
     queryFn: () => getPokemonSpeciesByID(pokemonId),
     enabled: pokemonId > 0,
   });
-  const evolutionChainId = +url.substring(url.slice(0, -1).lastIndexOf('/') + 1).slice(0, -1);
+  const evolutionChainId = getPokemonIdFromUrl(url);
   const { data: { chain: evolutionChain } = {} } = useQuery({
     queryKey: queryKeys.pokemon.evolutionChain(evolutionChainId),
     queryFn: () => getPokemonEvolutionChainByID(evolutionChainId),

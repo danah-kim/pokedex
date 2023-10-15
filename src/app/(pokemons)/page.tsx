@@ -3,6 +3,7 @@ import React from 'react';
 
 import { getPokemons, getPokemonTypeByID, getPokemonTypes } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
+import { getPokemonIdFromUrl } from '@/utils/common';
 import getQueryClient from '@/utils/getQueryClient';
 
 import Pokemons from './Pokemons';
@@ -27,7 +28,7 @@ export default async function Home() {
 
   if (types.count !== 0) {
     types.results.forEach(({ url }) => {
-      const id = +url.substring(url.slice(0, -1).lastIndexOf('/') + 1).slice(0, -1);
+      const id = getPokemonIdFromUrl(url);
 
       queryClientList.push(
         queryClient.prefetchQuery({

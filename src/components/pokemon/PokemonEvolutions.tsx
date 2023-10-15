@@ -5,7 +5,7 @@ import { memo } from 'react';
 
 import { POKEMON_IMAGES } from '@/constants/config';
 import type { ChainLink } from '@/typings/pokemon-evolution';
-import { getPokemonId } from '@/utils/common';
+import { getPokemonIdFromUrl } from '@/utils/common';
 
 interface PokemonEvolutionsProps {
   name: string;
@@ -39,11 +39,11 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
         {!!firstEvolution && (
           <div
             className="h-full w-1/3 flex flex-col items-center cursor-pointer"
-            onClick={() => onClickPokemon(getPokemonId(firstEvolution.url))}
+            onClick={() => onClickPokemon(getPokemonIdFromUrl(firstEvolution.url))}
           >
             <Image
               className="pixelated"
-              src={`${POKEMON_IMAGES.evolution}/${getPokemonId(firstEvolution.url)
+              src={`${POKEMON_IMAGES.evolution}/${getPokemonIdFromUrl(firstEvolution.url)
                 .toString()
                 .padStart(3, '0')}.png`}
               alt={firstEvolution.name}
@@ -64,11 +64,11 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
         {!!secondEvolution && (
           <div
             className="w-1/3 flex flex-col items-center cursor-pointer"
-            onClick={() => onClickPokemon(getPokemonId(secondEvolution.url))}
+            onClick={() => onClickPokemon(getPokemonIdFromUrl(secondEvolution.url))}
           >
             <Image
               className="pixelated"
-              src={`${POKEMON_IMAGES.evolution}/${getPokemonId(secondEvolution.url)
+              src={`${POKEMON_IMAGES.evolution}/${getPokemonIdFromUrl(secondEvolution.url)
                 .toString()
                 .padStart(3, '0')}.png`}
               alt={secondEvolution.name}
@@ -93,12 +93,12 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
               !noEvolution && 'cursor-pointer',
             )}
             onClick={() =>
-              noEvolution ? undefined : onClickPokemon(getPokemonId(lastEvolution.url))
+              noEvolution ? undefined : onClickPokemon(getPokemonIdFromUrl(lastEvolution.url))
             }
           >
             <Image
               className="pixelated"
-              src={`${POKEMON_IMAGES.evolution}/${getPokemonId(lastEvolution.url)
+              src={`${POKEMON_IMAGES.evolution}/${getPokemonIdFromUrl(lastEvolution.url)
                 .toString()
                 .padStart(3, '0')}.png`}
               alt={lastEvolution.name}
