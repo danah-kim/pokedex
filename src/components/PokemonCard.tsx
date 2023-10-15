@@ -34,14 +34,26 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
         <div className="flex gap-1.5 flex-wrap mt-0.5">
           <div className="flex gap-0.5 items-center">
             <div className={`bg-pokemon-${firstType}-main rounded-full p-0.5`}>
-              <Image src={`/assets/icons/type/${firstType}.svg`} alt="" width={8} height={8} />
+              <Image
+                src={`/assets/icons/type/${firstType}.svg`}
+                alt=""
+                width={8}
+                height={8}
+                draggable={false}
+              />
             </div>
             <p className="text-xs text-white">{capitalize(firstType)}</p>
           </div>
           {secondType.length > 0 && (
             <div className="flex gap-0.5 items-center">
               <div className={`bg-pokemon-${secondType}-main rounded-full p-0.5`}>
-                <Image src={`/assets/icons/type/${secondType}.svg`} alt="" width={8} height={8} />
+                <Image
+                  src={`/assets/icons/type/${secondType}.svg`}
+                  alt=""
+                  width={8}
+                  height={8}
+                  draggable={false}
+                />
               </div>
               <p className="text-xs text-white">{capitalize(secondType)}</p>
             </div>
@@ -55,6 +67,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
           alt=""
           width={90}
           height={90}
+          draggable={false}
         />
         <PokemonImage
           className="absolute inset-0 m-auto h-full w-auto max-h-16"
@@ -63,6 +76,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
           alt={name}
           width="0"
           height="0"
+          draggable={false}
         />
       </div>
       <div

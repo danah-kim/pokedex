@@ -11,12 +11,13 @@ const View = dynamic(() => import('@/components/canvas/View'), {
   ssr: false,
   loading: () => (
     <Image
+      className="animate-rotate-poke-ball"
       src="/assets/images/pokeball.png"
       alt="Pokeball"
-      className="animate-rotate-poke-ball"
       width={240}
       height={240}
       priority
+      draggable={false}
     />
   ),
 });
@@ -27,10 +28,11 @@ export default function Pokemons() {
   return (
     <main className={`relative w-screen h-screen flex items-center justify-center`}>
       <Image
+        className="opacity-90"
         src={`/assets/images/${spaceTheme}.jpg`}
         alt="background image"
         fill
-        className="opacity-90"
+        draggable={false}
       />
       <View
         className={hovered ? 'cursor-pointer' : 'cursor-default'}
