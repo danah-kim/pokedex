@@ -18,10 +18,10 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
   evolutionChain,
   onClickPokemon,
 }) => {
-  const firstEvolution = evolutionChain?.evolves_to[0]?.evolves_to[0]?.species;
+  const firstEvolution = evolutionChain?.species;
+  const lastEvolution = evolutionChain?.evolves_to[0]?.evolves_to[0]?.species;
   const secondEvolution = evolutionChain?.evolves_to[0]?.species;
-  const lastEvolution = evolutionChain?.species;
-  const noEvolution = !firstEvolution && !secondEvolution;
+  const noEvolution = !firstEvolution && !lastEvolution;
 
   return (
     <>
