@@ -101,6 +101,9 @@ const config: Config = {
           },
         },
       },
+      imageRendering: {
+        pixelated: 'pixelated',
+      },
     },
   },
   plugins: [],

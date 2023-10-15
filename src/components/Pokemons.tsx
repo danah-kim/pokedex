@@ -59,6 +59,8 @@ const Pokemons = () => {
   const pokemons = useMemo(() => pages.flatMap((page) => page.results), [pages]);
   const itemCount = hasNextPage ? pokemons.length + 1 : pokemons.length;
 
+  const isItemLoaded = (index: number) => !hasNextPage || index < pokemons.length;
+
   const loadMoreItems = async () => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
@@ -87,7 +89,7 @@ const Pokemons = () => {
         onPointerDown={(e) => e.stopPropagation()}
       >
         <InfiniteLoader
-          isItemLoaded={(index) => !!pokemons[index]}
+          isItemLoaded={isItemLoaded}
           itemCount={itemCount}
           loadMoreItems={loadMoreItems}
         >
@@ -103,7 +105,23 @@ const Pokemons = () => {
               itemCount={itemCount}
             >
               {({ index, style }) => {
-                const { url, name } = pokemons[index];
+                const { url = '', name = '' } = pokemons[index] || {};
+
+                if (!isItemLoaded(index) || url.length === 0)
+                  return (
+                    <div className="relative flex flex-row h-[100px] bg-zinc-300 overflow-hidden opacity-70 mx-4 mt-5 rounded-2xl shadow-sm">
+                      <Image
+                        className="ml-auto translate-x-5 translate-y-5"
+                        src={`/assets/icons/pokeball.svg`}
+                        alt=""
+                        width={90}
+                        height={90}
+                        draggable={false}
+                        priority
+                      />
+                    </div>
+                  );
+
                 const pokeminId = +url
                   .substring(url.slice(0, -1).lastIndexOf('/') + 1)
                   .slice(0, -1);

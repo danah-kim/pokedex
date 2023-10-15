@@ -1,3 +1,4 @@
+import classNames from 'classNames';
 import Image, { type ImageProps } from 'next/image';
 import { memo, useState } from 'react';
 
@@ -15,6 +16,13 @@ const PokemonImage: React.FC<PokemonImageProps> = ({
   ...props
 }) => {
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleOnLoad = () => {
+    setLoaded(true);
+
+    if (error) setError(false);
+  };
 
   return (
     <>
@@ -42,9 +50,14 @@ const PokemonImage: React.FC<PokemonImageProps> = ({
       )}
       <Image
         {...props}
-        onLoad={() => setLoaded(true)}
-        className={className}
-        src={`${POKEMON_IMAGES[format]}/${pokemonId}.${format}`}
+        onLoad={handleOnLoad}
+        onError={() => setError(true)}
+        className={classNames('pixelated', className, error || (pokemonId >= 650 && '!p-0'))}
+        src={
+          error || pokemonId >= 650
+            ? `${POKEMON_IMAGES.png}/${pokemonId}.png`
+            : `${POKEMON_IMAGES[format]}/${pokemonId}.${format}`
+        }
       />
     </>
   );

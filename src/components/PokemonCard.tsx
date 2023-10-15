@@ -68,14 +68,15 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
           width={90}
           height={90}
           draggable={false}
+          priority
         />
         <PokemonImage
-          className="absolute inset-0 m-auto h-full w-auto max-h-16"
+          className="absolute inset-0 m-auto h-full w-auto p-4"
           pokemonId={id}
           format="gif"
           alt={name}
-          width="0"
-          height="0"
+          width="96"
+          height="96"
           draggable={false}
         />
       </div>
