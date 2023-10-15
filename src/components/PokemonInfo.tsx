@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 import { memo, useState } from 'react';
 
 import { getPokemonByName, getPokemonSpeciesByID } from '@/api/pokemon';
@@ -7,6 +8,7 @@ import usePokemonStore from '@/stores/pokemonStore';
 import { pokemonHtml } from '@/utils/tunner';
 
 import PokemonAbout from './pokemon/PokemonAbout';
+import PokemonStats from './pokemon/PokemonStats';
 
 const MENU = ['About', 'Stats', 'Evolutions'];
 
@@ -21,6 +23,7 @@ const PokemonInfo = () => {
       weight = 0,
       types: [{ type: { name: firstType = '' } = {} } = {}] = [],
       abilities: [{ ability: { name: firstAbility = '' } = {} } = {}] = [],
+      stats = [],
     } = {},
   } = useQuery({
     queryKey: queryKeys.pokemon.item(pokemonName),
@@ -45,7 +48,7 @@ const PokemonInfo = () => {
     return (
       <pokemonHtml.In>
         <section
-          className="relative bg-gray-50 w-[222px] h-[96px] rounded-md flex justify-center items-center text-lg font-medium text-gray-500"
+          className="relative w-[222px] h-[96px] rounded-md flex justify-center items-center text-lg font-medium text-gray-500"
           onPointerDown={(e) => e.stopPropagation()}
         >
           Select a Pokémon
@@ -94,6 +97,17 @@ const PokemonInfo = () => {
             firstAbility={firstAbility}
           />
         )}
+        {!isLaoding && tab === 1 && <PokemonStats stats={stats} />}
+        <div className="absolute top-9 w-full overflow-hidden">
+          <Image
+            className="ml-auto translate-x-4"
+            src="/assets/icons/pokeball.svg"
+            alt=""
+            width={90}
+            height={90}
+            draggable={false}
+          />
+        </div>
       </section>
     </pokemonHtml.In>
   );
