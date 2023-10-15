@@ -11,8 +11,8 @@ interface PokemonAboutProps {
 
 const PokemonAbout: React.FC<PokemonAboutProps> = ({ height, weight, category, firstAbility }) => {
   return (
-    <div className="relative flex flex-col gap-1.5 pt-2.5 px-3 pb-3.5">
-      <div className="z-10">
+    <div className="relative pt-2.5 px-3 pb-3.5">
+      <div className="z-10 flex flex-col gap-1.5">
         <div className="flex text-[9px] text-zinc-700">
           <p className="w-14 m-w-[56px]">Height</p>
           <b className="overflow-hidden text-ellipsis">{height / 10}m</b>
