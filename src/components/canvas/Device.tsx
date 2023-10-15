@@ -6,10 +6,8 @@ import { useRef } from 'react';
 import * as THREE from 'three';
 import { type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import useThemeStore from '@/stores/themeStore';
-
-import PokemonList from '../PokemonList';
+import { pokemonsHtml } from '@/utils/tunner';
 
 type GLTFDevice = GLTF & {
   nodes: {
@@ -96,9 +94,7 @@ const Device = (props: JSX.IntrinsicElements['group']) => {
           material={materials.Udim0005}
         >
           <Html className="content" position={[-4.67, 1.88, -0.44]} transform occlude>
-            <ReactQueryProvider>
-              <PokemonList />
-            </ReactQueryProvider>
+            <pokemonsHtml.Out />
           </Html>
         </mesh>
       </group>

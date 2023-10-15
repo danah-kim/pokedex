@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
+import PokemonList from '@/components/Pokemons';
 import useThemeStore from '@/stores/themeStore';
 
 const Device = dynamic(() => import('@/components/canvas/Device'), { ssr: false });
@@ -20,7 +21,7 @@ const View = dynamic(() => import('@/components/canvas/View'), {
   ),
 });
 
-export default function Home() {
+export default function Pokemons() {
   const { spaceTheme, hovered } = useThemeStore();
 
   return (
@@ -38,6 +39,7 @@ export default function Home() {
       >
         <Device />
       </View>
+      <PokemonList />
     </main>
   );
 }
