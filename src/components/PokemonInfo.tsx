@@ -31,6 +31,7 @@ const PokemonInfo = () => {
     queryKey: queryKeys.pokemon.item(pokemonId),
     queryFn: () => getPokemonByID(pokemonId),
     enabled: pokemonId > 0,
+    refetchOnWindowFocus: false,
   });
   const {
     isLoading: isLoadingSpecies,
@@ -39,12 +40,14 @@ const PokemonInfo = () => {
     queryKey: queryKeys.pokemon.species(pokemonId),
     queryFn: () => getPokemonSpeciesByID(pokemonId),
     enabled: pokemonId > 0,
+    refetchOnWindowFocus: false,
   });
   const evolutionChainId = getPokemonIdFromUrl(url);
   const { data: { chain: evolutionChain } = {} } = useQuery({
     queryKey: queryKeys.pokemon.evolutionChain(evolutionChainId),
     queryFn: () => getPokemonEvolutionChainByID(evolutionChainId),
     enabled: evolutionChainId > 0,
+    refetchOnWindowFocus: false,
   });
   const category =
     genera.find(({ language }) => language.name === 'en')?.genus.replace(' Pokémon', '') || '';

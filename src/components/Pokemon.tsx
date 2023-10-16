@@ -22,11 +22,13 @@ const Pokemon = () => {
     queryKey: queryKeys.pokemon.item(pokemonId),
     queryFn: () => getPokemonByID(pokemonId),
     enabled: pokemonId > 0,
+    refetchOnWindowFocus: false,
   });
   const { isLoading: isLoadingSpecies, data: { flavor_text_entries = [] } = {} } = useQuery({
     queryKey: queryKeys.pokemon.species(pokemonId),
     queryFn: () => getPokemonSpeciesByID(pokemonId),
     enabled: pokemonId > 0,
+    refetchOnWindowFocus: false,
   });
 
   const flavorText =
