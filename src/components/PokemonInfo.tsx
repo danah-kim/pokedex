@@ -141,7 +141,7 @@ const PokemonInfo = () => {
           {types?.map(({ type: { name: pokemonType } }) => (
             <div
               key={`pokemon-type-${pokemonType}`}
-              className={`bg-pokemon-${pokemonType}-bg rounded-md w-full flex gap-2 items-center p-2.5 `}
+              className={`bg-pokemon-${pokemonType}-bg rounded-md flex gap-2 items-center p-2.5 w-full max-w-[110px]`}
             >
               <div className={`bg-pokemon-${pokemonType}-main rounded-full p-1`}>
                 <Image
@@ -152,7 +152,7 @@ const PokemonInfo = () => {
                   draggable={false}
                 />
               </div>
-              <p className={`text-center font-semibold text-pokemon-${pokemonType}-main`}>
+              <p className={`w-full font-semibold text-pokemon-${pokemonType}-main`}>
                 {capitalize(pokemonType)}
               </p>
             </div>
