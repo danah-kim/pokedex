@@ -1,6 +1,6 @@
-import classNames from 'classNames';
 import Image, { type ImageProps } from 'next/image';
 import { memo, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import { POKEMON_IMAGES } from '@/constants/config';
 
@@ -52,7 +52,7 @@ const PokemonImage: React.FC<PokemonImageProps> = ({
         {...props}
         onLoad={handleOnLoad}
         onError={() => setError(true)}
-        className={classNames('pixelated', className, error || (pokemonId >= 650 && '!p-0'))}
+        className={twMerge('pixelated', className, (error || pokemonId >= 650) && '!p-0')}
         src={
           error || pokemonId >= 650
             ? `${POKEMON_IMAGES.png}/${pokemonId}.png`

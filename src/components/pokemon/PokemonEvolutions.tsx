@@ -1,7 +1,7 @@
-import classNames from 'classNames';
 import capitalize from 'lodash-es/capitalize';
 import Image from 'next/image';
 import { memo } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import { POKEMON_IMAGES } from '@/constants/config';
 import type { ChainLink } from '@/typings/pokemon-evolution';
@@ -31,7 +31,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
         </div>
       )}
       <div
-        className={classNames(
+        className={twMerge(
           'relative px-3 pb-3.5 h-full z-10 flex gap-1.5',
           !noEvolution && 'pt-2.5',
         )}
@@ -52,7 +52,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
               draggable={false}
             />
             <p
-              className={classNames(
+              className={twMerge(
                 'text-[9px] text-zinc-700 text-center',
                 firstEvolution.name === name && 'font-semibold',
               )}
@@ -77,7 +77,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
               draggable={false}
             />
             <p
-              className={classNames(
+              className={twMerge(
                 'text-[9px] text-zinc-700 text-center',
                 secondEvolution.name === name && 'font-semibold',
               )}
@@ -88,7 +88,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
         )}
         {!!lastEvolution && (
           <div
-            className={classNames(
+            className={twMerge(
               'w-1/3 flex flex-col items-center',
               !noEvolution && 'cursor-pointer',
             )}
@@ -107,7 +107,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
               draggable={false}
             />
             <p
-              className={classNames(
+              className={twMerge(
                 'text-[9px] text-zinc-700 text-center',
                 lastEvolution.name === name && 'font-semibold',
               )}

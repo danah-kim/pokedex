@@ -1,5 +1,5 @@
-import classnames from 'classnames';
 import { memo } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import { STAT } from '@/constants/pokemon';
 import type { PokemonStat } from '@/typings/pokemon';
@@ -14,7 +14,7 @@ const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }) => {
       {stats.map(({ base_stat, stat: { name } }, index) => (
         <div
           key={`stat-${name}`}
-          className={classnames(
+          className={twMerge(
             'flex text-[9px] text-zinc-700 items-center',
             index === stats.length - 1 && 'pb-3',
           )}
