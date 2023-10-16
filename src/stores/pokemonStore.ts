@@ -6,7 +6,7 @@ export interface PokemonState {
     limit: number;
   };
   pokemonId: number;
-  selectPokemon: (pokemonId: number) => void;
+  setPokemonId: (pokemonId: number) => void;
 }
 
 const usePokemonStore = create<PokemonState>((set) => ({
@@ -15,7 +15,7 @@ const usePokemonStore = create<PokemonState>((set) => ({
     limit: 20,
   },
   pokemonId: 0,
-  selectPokemon: (pokemonId) => set(() => ({ pokemonId })),
+  setPokemonId: (pokemonId) => set(() => ({ pokemonId })),
 }));
 
 export default usePokemonStore;

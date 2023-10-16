@@ -14,7 +14,7 @@ interface PokemonEvolutionsProps {
 }
 
 const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionChain }) => {
-  const { selectPokemon } = usePokemonStore();
+  const { setPokemonId } = usePokemonStore();
   const firstEvolution = evolutionChain?.species;
   const lastEvolution = evolutionChain?.evolves_to[0]?.evolves_to[0]?.species;
   const secondEvolution = evolutionChain?.evolves_to[0]?.species;
@@ -36,7 +36,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionCh
         {!!firstEvolution && (
           <div
             className="h-full w-1/3 flex flex-col items-center cursor-pointer"
-            onClick={() => selectPokemon(getPokemonIdFromUrl(firstEvolution.url))}
+            onClick={() => setPokemonId(getPokemonIdFromUrl(firstEvolution.url))}
           >
             <Image
               className="pixelated"
@@ -61,7 +61,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionCh
         {!!secondEvolution && (
           <div
             className="w-1/3 flex flex-col items-center cursor-pointer"
-            onClick={() => selectPokemon(getPokemonIdFromUrl(secondEvolution.url))}
+            onClick={() => setPokemonId(getPokemonIdFromUrl(secondEvolution.url))}
           >
             <Image
               className="pixelated"
@@ -90,7 +90,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionCh
               !noEvolution && 'cursor-pointer',
             )}
             onClick={() =>
-              noEvolution ? undefined : selectPokemon(getPokemonIdFromUrl(lastEvolution.url))
+              noEvolution ? undefined : setPokemonId(getPokemonIdFromUrl(lastEvolution.url))
             }
           >
             <Image

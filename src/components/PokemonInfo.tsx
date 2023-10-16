@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import Pokeball from 'public/assets/icons/bg/pokeball.svg';
-import { memo,  useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 import { getPokemonByID, getPokemonEvolutionChainByID, getPokemonSpeciesByID } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
@@ -8,9 +8,9 @@ import usePokemonStore from '@/stores/pokemonStore';
 import { getPokemonIdFromUrl } from '@/utils/common';
 import { pokemonHtml } from '@/utils/tunner';
 
-import PokemonAbout from './pokemon/PokemonAbout';
-import PokemonEvolutions from './pokemon/PokemonEvolutions';
-import PokemonStats from './pokemon/PokemonStats';
+import PokemonAbout from './pokemonInfo/PokemonAbout';
+import PokemonEvolutions from './pokemonInfo/PokemonEvolutions';
+import PokemonStats from './pokemonInfo/PokemonStats';
 
 const MENU = ['About', 'Stats', 'Evolutions'];
 
@@ -119,10 +119,7 @@ const PokemonInfo = () => {
         )}
         {!isLaoding && tab === 1 && <PokemonStats stats={stats} />}
         {!isLaoding && tab === 2 && (
-          <PokemonEvolutions
-            name={name}
-            evolutionChain={evolutionChain}
-          />
+          <PokemonEvolutions name={name} evolutionChain={evolutionChain} />
         )}
         <div className="absolute top-9 w-full overflow-hidden">
           <Pokeball className="ml-auto translate-x-4 text-zinc-100 w-[90px] h-[90px]" />
