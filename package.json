@@ -13,6 +13,7 @@
     "@react-three/fiber": "^8.14.5",
     "@tanstack/react-query": "^4.36.1",
     "axios": "^1.5.1",
+    "framer-motion": "^10.16.4",
     "lodash-es": "^4.17.21",
     "next": "13.5.4",
     "qs": "^6.11.2",

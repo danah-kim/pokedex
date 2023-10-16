@@ -3,10 +3,11 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import PokemonInfo from '@/components/PokemonInfo';
-import PokemonList from '@/components/Pokemons';
 import useThemeStore from '@/stores/themeStore';
 
+const PokemonList = dynamic(() => import('@/components/Pokemons'));
+const PokemonInfo = dynamic(() => import('@/components/PokemonInfo'));
+const Pokemon = dynamic(() => import('@/components/Pokemon'));
 const Device = dynamic(() => import('@/components/canvas/Device'), { ssr: false });
 const View = dynamic(() => import('@/components/canvas/View'), {
   ssr: false,
@@ -17,7 +18,6 @@ const View = dynamic(() => import('@/components/canvas/View'), {
       alt="Pokeball"
       width={240}
       height={240}
-      // priority
       draggable={false}
     />
   ),
@@ -27,7 +27,7 @@ export default function Pokemons() {
   const { spaceTheme, hovered } = useThemeStore();
 
   return (
-    <main className={`relative w-screen h-screen flex items-center justify-center`}>
+    <main className="relative w-screen h-screen flex items-center justify-center">
       <Image
         className="opacity-90"
         src={`/assets/images/${spaceTheme}.jpg`}
@@ -44,6 +44,7 @@ export default function Pokemons() {
       </View>
       <PokemonList />
       <PokemonInfo />
+      <Pokemon />
     </main>
   );
 }

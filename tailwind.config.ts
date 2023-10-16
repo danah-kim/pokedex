@@ -101,6 +101,26 @@ const config: Config = {
           },
         },
       },
+      backgroundImage: {
+        normal: 'linear-gradient(0deg, #919AA2 35.77%, rgba(145, 154, 162, 0.50) 88.68%)',
+        fighting: 'linear-gradient(0deg, #CE416B 35.77%, rgba(206, 65, 107, 0.50) 88.68%)',
+        flying: 'linear-gradient(0deg, #89AAE3 35.77%, rgba(137, 170, 227, 0.50) 88.68%)',
+        poison: 'linear-gradient(0deg, #B567CE 35.77%, rgba(181, 103, 206, 0.50) 88.68%)',
+        ground: 'linear-gradient(0deg, #D97845 35.77%, rgba(217, 120, 69, 0.50) 88.68%)',
+        rock: 'linear-gradient(0deg, #C5B78C 35.77%, rgba(197, 183, 140, 0.50) 88.68%)',
+        bug: 'linear-gradient(0deg, #91C12F 35.77%, rgba(145, 193, 47, 0.50) 88.68%)',
+        ghost: 'linear-gradient(0deg, #5269AD 35.77%, rgba(82, 105, 173, 0.50) 88.68%)',
+        steel: 'linear-gradient(0deg, #5A8EA2 35.77%, rgba(90, 142, 162, 0.50) 88.68%)',
+        fire: 'linear-gradient(0deg, #FF9D55 35.77%, rgba(255, 157, 85, 0.50) 88.68%)',
+        water: 'linear-gradient(0deg, #5090D6 35.77%, rgba(80, 144, 214, 0.50) 88.68%)',
+        grass: 'linear-gradient(0deg, #63BC5A 35.77%, rgba(99, 188, 90, 0.50) 88.68%)',
+        electric: 'linear-gradient(0deg, #F4D23C 35.77%, rgba(244, 210, 60, 0.50) 88.68%)',
+        psychic: 'linear-gradient(0deg, #FA7179 35.77%, rgba(250, 113, 121, 0.50) 88.68%)',
+        ice: 'linear-gradient(0deg, #73CEC0 35.77%, rgba(115, 206, 192, 0.50) 88.68%)',
+        dragon: 'linear-gradient(0deg, #0B6DC3 35.77%, rgba(11, 109, 195, 0.50) 88.68%)',
+        dark: 'linear-gradient(0deg, #5A5465 35.77%, rgba(90, 84, 101, 0.50) 88.68%)',
+        fairy: 'linear-gradient(0deg, #EC8FE6 35.77%, rgba(236, 143, 230, 0.50) 88.68%)',
+      },
       imageRendering: {
         pixelated: 'pixelated',
       },
@@ -110,7 +130,11 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(pokemon)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|unknown|shadow)-(main|bg)/,
+        /(from|to|bg|text|border)-(pokemon)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|unknown|shadow)-(main|bg|gradient)/,
+    },
+    {
+      pattern:
+        /bg-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|unknown|shadow)/,
     },
   ],
 };
