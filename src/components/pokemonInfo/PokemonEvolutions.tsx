@@ -1,9 +1,8 @@
 import capitalize from 'lodash-es/capitalize';
-import Image from 'next/image';
 import { memo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { POKEMON_IMAGES } from '@/constants/config';
+import PokemonImage from '@/components/PokemonImage';
 import usePokemonStore from '@/stores/pokemonStore';
 import type { ChainLink } from '@/typings/pokemon-evolution';
 import { getPokemonIdFromUrl } from '@/utils/common';
@@ -30,27 +29,25 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionCh
       <div
         className={twMerge(
           'relative px-3 pb-3.5 h-full z-10 flex gap-1.5',
-          !noEvolution && 'pt-2.5',
+          !noEvolution && 'pt-1.5',
         )}
       >
         {!!firstEvolution && (
           <div
-            className="h-full w-1/3 flex flex-col items-center cursor-pointer"
+            className="relative w-1/3 h-full flex flex-col items-center cursor-pointer"
             onClick={() => setPokemonId(getPokemonIdFromUrl(firstEvolution.url))}
           >
-            <Image
-              className="pixelated"
-              src={`${POKEMON_IMAGES.evolution}/${getPokemonIdFromUrl(firstEvolution.url)
-                .toString()
-                .padStart(3, '0')}.png`}
-              alt={firstEvolution.name}
+            <PokemonImage
+              pokemonId={getPokemonIdFromUrl(firstEvolution.url)}
+              alt={name}
               width="96"
               height="96"
               draggable={false}
+              spinnerSize={32}
             />
             <p
               className={twMerge(
-                'text-[9px] text-zinc-700 text-center',
+                'mt-auto text-[9px] text-zinc-700 text-center',
                 firstEvolution.name === name && 'font-semibold',
               )}
             >
@@ -60,22 +57,20 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionCh
         )}
         {!!secondEvolution && (
           <div
-            className="w-1/3 flex flex-col items-center cursor-pointer"
+            className="relative w-1/3 h-full flex flex-col items-center cursor-pointer"
             onClick={() => setPokemonId(getPokemonIdFromUrl(secondEvolution.url))}
           >
-            <Image
-              className="pixelated"
-              src={`${POKEMON_IMAGES.evolution}/${getPokemonIdFromUrl(secondEvolution.url)
-                .toString()
-                .padStart(3, '0')}.png`}
-              alt={secondEvolution.name}
+            <PokemonImage
+              pokemonId={getPokemonIdFromUrl(secondEvolution.url)}
+              alt={name}
               width="96"
               height="96"
               draggable={false}
+              spinnerSize={32}
             />
             <p
               className={twMerge(
-                'text-[9px] text-zinc-700 text-center',
+                'mt-auto text-[9px] text-zinc-700 text-center',
                 secondEvolution.name === name && 'font-semibold',
               )}
             >
@@ -86,26 +81,24 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionCh
         {!!lastEvolution && (
           <div
             className={twMerge(
-              'w-1/3 flex flex-col items-center',
+              'relative w-1/3 h-full flex flex-col items-center',
               !noEvolution && 'cursor-pointer',
             )}
             onClick={() =>
               noEvolution ? undefined : setPokemonId(getPokemonIdFromUrl(lastEvolution.url))
             }
           >
-            <Image
-              className="pixelated"
-              src={`${POKEMON_IMAGES.evolution}/${getPokemonIdFromUrl(lastEvolution.url)
-                .toString()
-                .padStart(3, '0')}.png`}
-              alt={lastEvolution.name}
+            <PokemonImage
+              pokemonId={getPokemonIdFromUrl(lastEvolution.url)}
+              alt={name}
               width="96"
               height="96"
               draggable={false}
+              spinnerSize={32}
             />
             <p
               className={twMerge(
-                'text-[9px] text-zinc-700 text-center',
+                'mt-auto text-[9px] text-zinc-700 text-center',
                 lastEvolution.name === name && 'font-semibold',
               )}
             >

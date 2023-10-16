@@ -80,7 +80,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, types }) => {
           priority
         />
         <PokemonImage
-          className="absolute inset-0 m-auto h-full w-auto p-4"
+          className="p-4"
           pokemonId={id}
           format="gif"
           alt={name}

@@ -70,7 +70,7 @@ const Pokemon = () => {
               </p>
             </div>
             <div
-              className={`absolute top-0 left-0 w-full h-full rounded-xl shadow-sm opacity-70 transition-opacity overflow-hidden bg-${firstType}`}
+              className={`absolute top-0 left-0 w-full h-full rounded-xl shadow-sm transition-opacity overflow-hidden bg-${firstType}`}
             >
               <div className="relative w-[200%] h-[200%] -left-32 right-32 bg-white top-[116px] rounded-[100%]" />
             </div>
