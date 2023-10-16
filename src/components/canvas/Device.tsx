@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import { type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import useThemeStore from '@/stores/themeStore';
-import { pokemonHtml, pokemonModalHtml, pokemonsHtml } from '@/utils/tunner';
+import { pokemonHtml, pokemonModalHtml, pokemonsHtml, pokemonTypesHtml } from '@/utils/tunner';
 
 type GLTFDevice = GLTF & {
   nodes: {
@@ -99,6 +99,9 @@ const Device = (props: JSX.IntrinsicElements['group']) => {
           </Html>
           <Html className="content" position={[5.31, 2.82, -0.514]} transform occlude>
             <pokemonHtml.Out />
+          </Html>
+          <Html className="content" position={[5.31, -3.56, -0.542]} transform occlude>
+            <pokemonTypesHtml.Out />
           </Html>
         </mesh>
       </group>

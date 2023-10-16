@@ -1,4 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import { capitalize } from 'lodash-es';
+import Image from 'next/image';
 import Pokeball from 'public/assets/icons/bg/pokeball.svg';
 import { memo, useEffect, useRef, useState } from 'react';
 
@@ -6,7 +8,7 @@ import { getPokemonByID, getPokemonEvolutionChainByID, getPokemonSpeciesByID } f
 import queryKeys from '@/constants/queryKeys';
 import usePokemonStore from '@/stores/pokemonStore';
 import { getPokemonIdFromUrl } from '@/utils/common';
-import { pokemonHtml } from '@/utils/tunner';
+import { pokemonHtml, pokemonTypesHtml } from '@/utils/tunner';
 
 import PokemonAbout from './pokemonInfo/PokemonAbout';
 import PokemonEvolutions from './pokemonInfo/PokemonEvolutions';
@@ -23,6 +25,7 @@ const PokemonInfo = () => {
       height = 0,
       weight = 0,
       name = '',
+      types,
       types: [{ type: { name: firstType = '' } = {} } = {}] = [],
       abilities: [{ ability: { name: firstAbility = '' } = {} } = {}] = [],
       stats = [],
@@ -80,55 +83,83 @@ const PokemonInfo = () => {
   }
 
   return (
-    <pokemonHtml.In>
-      <section
-        ref={pokemonInfoRef}
-        className="relative bg-gray-50 w-[222px] h-[96px] rounded-md overflow-scroll select-none"
-        onPointerDown={(e) => e.stopPropagation()}
-      >
-        <div role="tablist" className="z-10 flex h-7 items-center w-full">
-          {MENU.map((name, index) => (
-            <button
-              key={`menu-${name}`}
-              role="tab"
-              aria-selected={tab === index}
-              disabled={isLaoding}
-              className={`w-1/3 h-full text-[10px] font-semibold transition-colors border-solid disabled:text-zinc-300
+    <>
+      <pokemonHtml.In>
+        <section
+          ref={pokemonInfoRef}
+          className="relative bg-gray-50 w-[222px] h-[96px] rounded-md overflow-scroll select-none"
+          onPointerDown={(e) => e.stopPropagation()}
+        >
+          <div role="tablist" className="z-10 flex h-7 items-center w-full">
+            {MENU.map((name, index) => (
+              <button
+                key={`menu-${name}`}
+                role="tab"
+                aria-selected={tab === index}
+                disabled={isLaoding}
+                className={`w-1/3 h-full text-[10px] font-semibold transition-colors border-solid disabled:text-zinc-300
               ${
                 tab === index
                   ? `text-pokemon-${firstType}-main border-pokemon-${firstType}-main border-b-2`
                   : 'border-b text-zinc-500'
               }`}
-              onClick={handleClickTab(index)}
-            >
-              {name}
-            </button>
-          ))}
-        </div>
-        {isLaoding && (
-          <div className="flex flex-col gap-1.5 pt-2.5 px-3 pb-3.5 z-10">
-            {Array.from({ length: 4 }, (_, index) => (
-              <div key={`skeleton-${index}`} className={`w-full h-5 bg-zinc-100 rounded-md`} />
+                onClick={handleClickTab(index)}
+              >
+                {name}
+              </button>
             ))}
           </div>
-        )}
-        {!isLaoding && tab === 0 && (
-          <PokemonAbout
-            height={height}
-            weight={weight}
-            category={category}
-            firstAbility={firstAbility}
-          />
-        )}
-        {!isLaoding && tab === 1 && <PokemonStats stats={stats} />}
-        {!isLaoding && tab === 2 && (
-          <PokemonEvolutions name={name} evolutionChain={evolutionChain} />
-        )}
-        <div className="absolute top-9 w-full overflow-hidden">
-          <Pokeball className="ml-auto translate-x-4 text-zinc-100 w-[90px] h-[90px]" />
-        </div>
-      </section>
-    </pokemonHtml.In>
+          {isLaoding && (
+            <div className="flex flex-col gap-1.5 pt-2.5 px-3 pb-3.5 z-10">
+              {Array.from({ length: 4 }, (_, index) => (
+                <div key={`skeleton-${index}`} className={`w-full h-5 bg-zinc-100 rounded-md`} />
+              ))}
+            </div>
+          )}
+          {!isLaoding && tab === 0 && (
+            <PokemonAbout
+              height={height}
+              weight={weight}
+              category={category}
+              firstAbility={firstAbility}
+            />
+          )}
+          {!isLaoding && tab === 1 && <PokemonStats stats={stats} />}
+          {!isLaoding && tab === 2 && (
+            <PokemonEvolutions name={name} evolutionChain={evolutionChain} />
+          )}
+          <div className="absolute top-9 w-full overflow-hidden">
+            <Pokeball className="ml-auto translate-x-4 text-zinc-100 w-[90px] h-[90px]" />
+          </div>
+        </section>
+      </pokemonHtml.In>
+      <pokemonTypesHtml.In>
+        <section
+          className="relative w-[245px] h-[44px] overflow-scroll select-none flex justify-between gap-6"
+          onPointerDown={(e) => e.stopPropagation()}
+        >
+          {types?.map(({ type: { name: pokemonType } }) => (
+            <div
+              key={`pokemon-type-${pokemonType}`}
+              className={`bg-pokemon-${pokemonType}-bg rounded-md w-full flex gap-2 items-center p-2.5 `}
+            >
+              <div className={`bg-pokemon-${pokemonType}-main rounded-full p-1`}>
+                <Image
+                  src={`/assets/icons/type/${pokemonType}.svg`}
+                  alt=""
+                  width={12}
+                  height={12}
+                  draggable={false}
+                />
+              </div>
+              <p className={`text-center font-semibold text-pokemon-${pokemonType}-main`}>
+                {capitalize(pokemonType)}
+              </p>
+            </div>
+          ))}
+        </section>
+      </pokemonTypesHtml.In>
+    </>
   );
 };
 

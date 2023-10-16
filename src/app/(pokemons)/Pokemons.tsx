@@ -8,6 +8,7 @@ import useThemeStore from '@/stores/themeStore';
 const PokemonList = dynamic(() => import('@/components/Pokemons'));
 const PokemonInfo = dynamic(() => import('@/components/PokemonInfo'));
 const Pokemon = dynamic(() => import('@/components/Pokemon'));
+
 const Device = dynamic(() => import('@/components/canvas/Device'), { ssr: false });
 const View = dynamic(() => import('@/components/canvas/View'), {
   ssr: false,
