@@ -4,20 +4,17 @@ import { memo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { POKEMON_IMAGES } from '@/constants/config';
+import usePokemonStore from '@/stores/pokemonStore';
 import type { ChainLink } from '@/typings/pokemon-evolution';
 import { getPokemonIdFromUrl } from '@/utils/common';
 
 interface PokemonEvolutionsProps {
   name: string;
   evolutionChain: ChainLink | undefined;
-  onClickPokemon: (id: number) => void;
 }
 
-const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
-  name,
-  evolutionChain,
-  onClickPokemon,
-}) => {
+const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionChain }) => {
+  const { selectPokemon } = usePokemonStore();
   const firstEvolution = evolutionChain?.species;
   const lastEvolution = evolutionChain?.evolves_to[0]?.evolves_to[0]?.species;
   const secondEvolution = evolutionChain?.evolves_to[0]?.species;
@@ -39,7 +36,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
         {!!firstEvolution && (
           <div
             className="h-full w-1/3 flex flex-col items-center cursor-pointer"
-            onClick={() => onClickPokemon(getPokemonIdFromUrl(firstEvolution.url))}
+            onClick={() => selectPokemon(getPokemonIdFromUrl(firstEvolution.url))}
           >
             <Image
               className="pixelated"
@@ -64,7 +61,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
         {!!secondEvolution && (
           <div
             className="w-1/3 flex flex-col items-center cursor-pointer"
-            onClick={() => onClickPokemon(getPokemonIdFromUrl(secondEvolution.url))}
+            onClick={() => selectPokemon(getPokemonIdFromUrl(secondEvolution.url))}
           >
             <Image
               className="pixelated"
@@ -93,7 +90,7 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({
               !noEvolution && 'cursor-pointer',
             )}
             onClick={() =>
-              noEvolution ? undefined : onClickPokemon(getPokemonIdFromUrl(lastEvolution.url))
+              noEvolution ? undefined : selectPokemon(getPokemonIdFromUrl(lastEvolution.url))
             }
           >
             <Image

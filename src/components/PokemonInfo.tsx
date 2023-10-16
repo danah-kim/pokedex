@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import Pokeball from 'public/assets/icons/bg/pokeball.svg';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo,  useEffect, useRef, useState } from 'react';
 
 import { getPokemonByID, getPokemonEvolutionChainByID, getPokemonSpeciesByID } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
@@ -15,7 +15,7 @@ import PokemonStats from './pokemon/PokemonStats';
 const MENU = ['About', 'Stats', 'Evolutions'];
 
 const PokemonInfo = () => {
-  const { pokemonId, selectPokemon } = usePokemonStore();
+  const { pokemonId } = usePokemonStore();
 
   const {
     isLoading: isLaodingPokemon,
@@ -53,16 +53,14 @@ const PokemonInfo = () => {
   const pokemonInfoRef = useRef<HTMLElement | null>(null);
   const isLaoding = isLaodingPokemon || isLoadingSpecies;
 
-  const handleClickPokemon = useCallback(
-    (id: number) => {
-      selectPokemon(id);
-    },
-    [selectPokemon],
-  );
+  const handleClickTab = (index: number) => () => {
+    setTab(index);
+    pokemonInfoRef.current?.scrollTo({ top: 0 });
+  };
 
   useEffect(() => {
     setTab(0);
-    pokemonInfoRef.current?.scrollTo({ top: 0 });
+    setTimeout(() => pokemonInfoRef.current?.scrollTo({ top: 0 }));
   }, [pokemonId]);
 
   if (pokemonId === 0) {
@@ -98,7 +96,7 @@ const PokemonInfo = () => {
                   ? `text-pokemon-${firstType}-main border-pokemon-${firstType}-main border-b-2`
                   : 'border-b text-zinc-500'
               }`}
-              onClick={() => setTab(index)}
+              onClick={handleClickTab(index)}
             >
               {name}
             </button>
@@ -124,7 +122,6 @@ const PokemonInfo = () => {
           <PokemonEvolutions
             name={name}
             evolutionChain={evolutionChain}
-            onClickPokemon={handleClickPokemon}
           />
         )}
         <div className="absolute top-9 w-full overflow-hidden">
