@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { memo, useCallback, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import { getPokemonByID, getPokemonEvolutionChainByID, getPokemonSpeciesByID } from '@/api/pokemon';
 import queryKeys from '@/constants/queryKeys';
@@ -56,11 +56,14 @@ const PokemonInfo = () => {
   const handleClickPokemon = useCallback(
     (id: number) => {
       selectPokemon(id);
-      setTab(0);
-      setTimeout(() => pokemonInfoRef.current?.scrollTo({ top: 0 }));
     },
     [selectPokemon],
   );
+
+  useEffect(() => {
+    setTab(0);
+    pokemonInfoRef.current?.scrollTo({ top: 0 });
+  }, [pokemonId]);
 
   if (pokemonId === 0) {
     return (
