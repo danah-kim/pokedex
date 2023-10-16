@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import Image from 'next/image';
+import Pokeball from 'public/assets/icons/bg/pokeball.svg';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import { getPokemonByID, getPokemonEvolutionChainByID, getPokemonSpeciesByID } from '@/api/pokemon';
@@ -128,14 +128,7 @@ const PokemonInfo = () => {
           />
         )}
         <div className="absolute top-9 w-full overflow-hidden">
-          <Image
-            className="ml-auto translate-x-4"
-            src="/assets/icons/pokeball.svg"
-            alt=""
-            width={90}
-            height={90}
-            draggable={false}
-          />
+          <Pokeball className="ml-auto translate-x-4 text-zinc-100 w-[90px] h-[90px]" />
         </div>
       </section>
     </pokemonHtml.In>

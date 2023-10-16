@@ -1,6 +1,7 @@
 'use client';
 import { useInfiniteQuery, useQueries, useQuery } from '@tanstack/react-query';
-import Image from 'next/image';
+import PokeBall from 'public/assets/icons/bg/pokeball.svg';
+import Logo from 'public/assets/images/logo.svg';
 import qs from 'qs';
 import { memo, useMemo } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -71,14 +72,7 @@ const Pokemons = () => {
   if (isLoading || types.some((type) => typeof type === 'undefined')) {
     return (
       <pokemonsHtml.In>
-        <Image
-          src="/assets/images/logo.svg"
-          alt="Pokémon Logo"
-          width="0"
-          height="0"
-          className="w-[200px] h-auto"
-          priority
-        />
+        <Logo className="w-[200px] h-auto" />
       </pokemonsHtml.In>
     );
   }
@@ -111,15 +105,7 @@ const Pokemons = () => {
                 if (!isItemLoaded(index) || url.length === 0)
                   return (
                     <div className="relative flex flex-row h-[100px] bg-zinc-300 overflow-hidden opacity-70 mx-4 mt-5 rounded-2xl shadow-sm">
-                      <Image
-                        className="ml-auto translate-x-5 translate-y-5"
-                        src={`/assets/icons/pokeball.svg`}
-                        alt=""
-                        width={90}
-                        height={90}
-                        draggable={false}
-                        priority
-                      />
+                      <PokeBall className="ml-auto w-[90px] h-[90px] translate-x-5 translate-y-5 text-zinc-100" />
                     </div>
                   );
 

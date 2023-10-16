@@ -27,6 +27,7 @@
     "zustand": "^4.4.3"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query-devtools": "^4.36.1",
     "@tanstack/react-query-next-experimental": "5.0.0-alpha.80",
     "@types/lodash-es": "^4.17.9",

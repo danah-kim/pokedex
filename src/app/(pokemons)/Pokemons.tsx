@@ -17,7 +17,7 @@ const View = dynamic(() => import('@/components/canvas/View'), {
       alt="Pokeball"
       width={240}
       height={240}
-      priority
+      // priority
       draggable={false}
     />
   ),
