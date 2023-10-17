@@ -20,6 +20,7 @@ const View = dynamic(() => import('@/components/canvas/View'), {
       width={240}
       height={240}
       draggable={false}
+      priority
     />
   ),
 });
