@@ -80,7 +80,7 @@ const Pokemons = () => {
   return (
     <pokemonsHtml.In>
       <section
-        className="relative bg-gray-50 w-[256px] h-[173px] rounded-xl overflow-scroll select-none"
+        className="relative bg-gray-50 w-[256px] h-[173px] rounded-xl overflow-scroll"
         onPointerDown={(e) => e.stopPropagation()}
       >
         <InfiniteLoader

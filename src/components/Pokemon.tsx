@@ -37,7 +37,7 @@ const Pokemon = () => {
   return (
     <pokemonModalHtml.In>
       <motion.div
-        className={`absolute inset-0 bg-gray-50 w-[256px] h-[173px] rounded-xl overflow-scroll select-none z-20`}
+        className="absolute inset-0 bg-gray-50 w-[256px] h-[173px] rounded-xl overflow-scroll z-20"
         animate={pokemonId > 0 && !isLaodingPokemon && !isLoadingSpecies ? 'open' : 'closed'}
         variants={{
           open: { opacity: 1, visibility: 'visible' },
