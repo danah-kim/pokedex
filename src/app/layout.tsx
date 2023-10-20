@@ -14,7 +14,8 @@ const notoSans = Noto_Sans({
 export const metadata: Metadata = {
   title: 'Pokédex',
   description: 'Pokédex',
-  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
+  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0',
+  keywords: 'pokedex, pokeAPI, pokemon, three.js, three-fiber, project',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

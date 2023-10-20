@@ -130,7 +130,7 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(from|to|bg|text|border)-(pokemon)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|unknown|shadow)-(main|bg|gradient)/,
+        /(bg|text|border)-(pokemon)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|unknown|shadow)-(main|bg|gradient)/,
     },
     {
       pattern:
