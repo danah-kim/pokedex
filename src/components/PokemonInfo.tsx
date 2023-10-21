@@ -135,7 +135,7 @@ const PokemonInfo = () => {
       </pokemonHtml.In>
       <pokemonTypesHtml.In>
         <section
-          className="relative w-[245px] h-[44px] overflow-scroll flex justify-between gap-6"
+          className="relative w-[245px] h-[44px] flex justify-between gap-6"
           onPointerDown={(e) => e.stopPropagation()}
         >
           {types?.map(({ type: { name: pokemonType } }) => (
