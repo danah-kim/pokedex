@@ -4,7 +4,6 @@ import { capitalize } from 'lodash-es';
 import Image from 'next/image';
 import Pokeball from 'public/assets/icons/bg/pokeball.svg';
 import ChevronLeft from 'public/assets/icons/chevron-left.svg';
-import { memo } from 'react';
 
 import { getPokemonByID, getPokemonSpeciesByID } from '@/api/pokemon';
 import { POKEMON_IMAGES } from '@/constants/config';
@@ -12,7 +11,7 @@ import queryKeys from '@/constants/queryKeys';
 import usePokemonStore from '@/stores/pokemonStore';
 import { pokemonModalHtml } from '@/utils/tunner';
 
-const Pokemon = () => {
+const PokemonItem = () => {
   const { pokemonId, setPokemonId } = usePokemonStore();
 
   const {
@@ -116,4 +115,4 @@ const Pokemon = () => {
   );
 };
 
-export default memo(Pokemon);
+export default PokemonItem;

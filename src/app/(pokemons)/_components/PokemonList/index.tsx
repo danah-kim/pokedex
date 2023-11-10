@@ -18,7 +18,7 @@ import PokemonCard from './PokemonCard';
 
 const PADDING_SIZE = 16;
 
-const Pokemons = () => {
+const PokemonList = () => {
   const { pokemonsParams } = usePokemonStore();
 
   const { isLoading: isLoadingTypes, data: { count: typeCount = 0, results = [] } = {} } = useQuery(
@@ -138,4 +138,4 @@ const Pokemons = () => {
   );
 };
 
-export default memo(Pokemons);
+export default PokemonList;

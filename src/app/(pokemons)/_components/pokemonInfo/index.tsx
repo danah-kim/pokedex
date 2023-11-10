@@ -10,9 +10,9 @@ import usePokemonStore from '@/stores/pokemonStore';
 import { getPokemonIdFromUrl } from '@/utils/common';
 import { pokemonHtml, pokemonTypesHtml } from '@/utils/tunner';
 
-import PokemonAbout from './pokemonInfo/PokemonAbout';
-import PokemonEvolutions from './pokemonInfo/PokemonEvolutions';
-import PokemonStats from './pokemonInfo/PokemonStats';
+import PokemonAbout from './PokemonAbout';
+import PokemonEvolutions from './PokemonEvolutions';
+import PokemonStats from './PokemonStats';
 
 const MENU = ['About', 'Stats', 'Evolutions'];
 
@@ -163,4 +163,4 @@ const PokemonInfo = () => {
   );
 };
 
-export default memo(PokemonInfo);
+export default PokemonInfo;

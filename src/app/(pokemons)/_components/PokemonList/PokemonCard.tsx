@@ -2,10 +2,9 @@ import capitalize from 'lodash-es/capitalize';
 import Image from 'next/image';
 import { memo, useMemo } from 'react';
 
+import PokemonImage from '@/components/PokemonImage';
 import usePokemonStore from '@/stores/pokemonStore';
 import type { Type } from '@/typings/pokemon-type';
-
-import PokemonImage from './PokemonImage';
 
 interface PokemonCardProps {
   id: number;

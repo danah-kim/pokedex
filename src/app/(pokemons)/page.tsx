@@ -6,7 +6,7 @@ import queryKeys from '@/constants/queryKeys';
 import { getPokemonIdFromUrl } from '@/utils/common';
 import getQueryClient from '@/utils/getQueryClient';
 
-import Pokemons from './Pokemons';
+import Pokemons from './_components/Pokemons';
 
 export default async function Home() {
   const queryClient = getQueryClient();

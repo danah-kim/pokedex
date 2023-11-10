@@ -1,5 +1,4 @@
 import capitalize from 'lodash-es/capitalize';
-import { memo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import PokemonImage from '@/components/PokemonImage';
@@ -111,4 +110,4 @@ const PokemonEvolutions: React.FC<PokemonEvolutionsProps> = ({ name, evolutionCh
   );
 };
 
-export default memo(PokemonEvolutions);
+export default PokemonEvolutions;

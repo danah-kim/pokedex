@@ -5,9 +5,9 @@ import Image from 'next/image';
 
 import useThemeStore from '@/stores/themeStore';
 
-const PokemonList = dynamic(() => import('@/components/Pokemons'));
-const PokemonInfo = dynamic(() => import('@/components/PokemonInfo'));
-const Pokemon = dynamic(() => import('@/components/Pokemon'));
+const PokemonList = dynamic(() => import('./PokemonList'));
+const PokemonInfo = dynamic(() => import('./pokemonInfo'));
+const PokemonItem = dynamic(() => import('./PokemonItem'));
 
 const Device = dynamic(() => import('@/components/canvas/Device'), { ssr: false });
 const View = dynamic(() => import('@/components/canvas/View'), {
@@ -46,7 +46,7 @@ export default function Pokemons() {
       </View>
       <PokemonList />
       <PokemonInfo />
-      <Pokemon />
+      <PokemonItem />
     </main>
   );
 }

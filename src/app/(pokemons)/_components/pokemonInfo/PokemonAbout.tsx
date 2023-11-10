@@ -1,6 +1,4 @@
 import capitalize from 'lodash-es/capitalize';
-import Image from 'next/image';
-import { memo } from 'react';
 
 interface PokemonAboutProps {
   height: number;
@@ -32,4 +30,4 @@ const PokemonAbout: React.FC<PokemonAboutProps> = ({ height, weight, category, f
   );
 };
 
-export default memo(PokemonAbout);
+export default PokemonAbout;

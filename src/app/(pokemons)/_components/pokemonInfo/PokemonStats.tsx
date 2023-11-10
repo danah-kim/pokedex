@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { STAT } from '@/constants/pokemon';
@@ -26,7 +25,7 @@ const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }) => {
               <span
                 className="absolute h-full bg-primary left-0 rounded-full"
                 style={{
-                  right: `${base_stat}%`,
+                  right: `${100 - base_stat}%`,
                   backgroundColor: STAT[name as keyof typeof STAT].color,
                 }}
               />
@@ -38,4 +37,4 @@ const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }) => {
   );
 };
 
-export default memo(PokemonStats);
+export default PokemonStats;
