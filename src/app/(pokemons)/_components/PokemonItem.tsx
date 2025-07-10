@@ -44,14 +44,14 @@ const PokemonItem = () => {
         }}
       >
         {pokemonId > 0 && !isLaodingPokemon && !isLoadingSpecies && (
-          <div id="modal" className="relative pt-8 pb-4 px-7">
+          <div id="modal" className="relative pb-4">
             <div
-              className="absolute left-0 top-0 w-8 h-10 cursor-pointer z-30"
+              className="sticky left-0 top-0 w-8 h-9 cursor-pointer z-30"
               onClick={() => setPokemonId(0)}
             >
               <ChevronLeft className="w-full h-full" />
             </div>
-            <div className="relative z-30 flex flex-col w-full overflow-hidden whitespace-nowrap">
+            <div className="relative z-30 flex flex-col w-full overflow-hidden whitespace-nowrap px-7">
               <p className="text-xs text-white">#{pokemonId.toString().padStart(4, '0')}</p>
               <p className="text-xl font-black text-white relative leading-6 overflow-hidden text-ellipsis">
                 {capitalize(name)}

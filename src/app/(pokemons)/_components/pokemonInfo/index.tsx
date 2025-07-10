@@ -90,7 +90,7 @@ const PokemonInfo = () => {
           className="relative bg-gray-50 w-[222px] h-[96px] rounded-md overflow-scroll"
           onPointerDown={(e) => e.stopPropagation()}
         >
-          <div role="tablist" className="z-10 flex h-7 items-center w-full">
+          <div role="tablist" className="flex h-7 items-center w-full sticky top-0 bg-gray-50 z-20">
             {MENU.map((name, index) => (
               <button
                 key={`menu-${name}`}
@@ -110,7 +110,7 @@ const PokemonInfo = () => {
             ))}
           </div>
           {isLaoding && (
-            <div className="flex flex-col gap-1.5 pt-2.5 px-3 pb-3.5 z-10">
+            <div className="flex flex-col gap-1.5 pt-2.5 px-3 pb-3.5 z-0">
               {Array.from({ length: 4 }, (_, index) => (
                 <div key={`skeleton-${index}`} className={`w-full h-5 bg-zinc-100 rounded-md`} />
               ))}
@@ -135,7 +135,7 @@ const PokemonInfo = () => {
       </pokemonHtml.In>
       <pokemonTypesHtml.In>
         <section
-          className="relative w-[245px] h-[44px] flex justify-between gap-6"
+          className="relative w-[245px] h-[44px] flex justify-between gap-6 z-0"
           onPointerDown={(e) => e.stopPropagation()}
         >
           {types?.map(({ type: { name: pokemonType } }) => (
